@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Password</title>
+    <link rel="stylesheet" href="{% static 'app_1/cpstyle.css' %}">
+  </head>
+  <body>
+    <section>
+        <div class="login-box">
+            <form action="{% url 'change_pass' %}" method="post">
+                {% csrf_token %}
+                <h2>LockReset</h2>
+                <div class="input-box">
+                    <span class = "icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+                    <input name="old_pass_field" type="password" required >
+                    <label >Old Password</label>
+                </div>
+                <!-- otp varification shayad nahi rakhna hai islye nahi karra -->
+                <div class="input-box">
+                    <span class = "icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+                    <input name="new_pass_field_1" type="password" required >
+                    <label >New Password</label>
+                </div>
+                <div class="input-box">
+                    <span class = "icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+                    <input name="new_pass_field_2" type="password" required >
+                    <label >Confirm Password</label>
+                    {% for m in messages %}
+                    {% if m.tags == "success" %}
+                        <p style="color:green;">{{m}}</p>
+                    {% else %}
+                        <p style="color:red;">{{m}}</p>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <button type="submit">LockReset</button>
+                <a href="{% url 'login' %}" style="
+
+                position: relative;
+                top:10px;
+                left:38%;
+                color: white;
+                align-items: center;
+                text-decoration:none;
+                ">Home page</a>
+            </form>
+        </div>
+    </section>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
